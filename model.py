@@ -364,7 +364,7 @@ class PyramidROIAlign(KE.Layer):
         roi_level = log2_graph(tf.sqrt(h * w) / (224.0 / tf.sqrt(image_area)))
         roi_level = tf.minimum(5, tf.maximum(
             2, 4 + tf.cast(tf.round(roi_level), tf.int32)))
-        roi_level = tf.squeeze(roi_level, 2)
+        roi_level = tf.squeeze(roi_level, 2)    # [batch size , num_boxes]
 
         # Loop through levels and apply ROI pooling to each. P2 to P5.
         pooled = []
